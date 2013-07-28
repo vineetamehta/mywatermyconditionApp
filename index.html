@@ -5,28 +5,47 @@
 <title>Water-Save it</title>
 
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<!added for bootstrap>
+
 <link rel="stylesheet" href="styles/bootstrap-responsive.css" media="screen" />
-<link rel="stylesheet" href="styles/bootstrap.css" media="screen" /><!added for bootstrap>
-<link rel="stylesheet" href="styles/style.css" media="screen" />
+<link rel="stylesheet" href="styles/bootstrap.css" media="screen" />
+
 <link rel="stylesheet" href="styles/media-queries.css" />
+
+<link rel="stylesheet" href="styles/styles.css" media="screen" />
+<link rel="stylesheet" href="styles/style.css" media="screen" />
 <link rel="stylesheet" href="./flex-slider/flexslider.css" type="text/css" media="screen" />
 <link href="styles/prettyPhoto.css" rel="stylesheet" type="text/css" media="screen" />
 <link href="styles/tipsy.css" rel="stylesheet" type="text/css" media="screen" />
+<link rel="stylesheet" type="text/css" href="styles/jquery.autocomplete.css" />
 
 
-<!added for bootstrap>
-<script type="text/javascript" src="./scripts/bootstrap.min.js"></script><!added for bootstrap>
+<!--added for bootstrap-->
+<script type="text/javascript" src="./scripts/bootstrap.min.js"></script>
+<script type="text/javascript" src="./scripts/jquery-1.4.2.js"></script><!--added for bootstrap-->
 <script type="text/javascript" src="./scripts/jquery-1.7.1.min.js"></script>
 <script type="text/javascript" src="./flex-slider/jquery.flexslider-min.js"></script>
 <script src="scripts/jquery.prettyPhoto.js" type="text/javascript"></script>
+<script type='text/javascript' src="./scripts/jquery.autocomplete.js"></script>
 <script src="scripts/jquery.tipsy.js" type="text/javascript"></script>
 <script src="scripts/jquery.knob.js" type="text/javascript"></script>
 <script type="text/javascript" src="./scripts/jquery.isotope.min.js"></script>
 <script type="text/javascript" src="./scripts/jquery.smooth-scroll.min.js"></script>
 <script type="text/javascript" src="./scripts/waypoints.min.js"></script>
 <script type="text/javascript" src="./scripts/setup.js"></script>
-
+<script type="text/javascript">
+$().ready(function() {
+	$("#st").autocomplete("autoCompleteMain.php", {
+		width: 200,
+		matchContains: true,
+		//mustMatch: true,
+		//minChars: 0,
+		//multiple: true,
+		//highlight: false,
+		//multipleSeparator: ",",
+		selectFirst: false
+	});
+});
+</script>
 
 </head>
 <body>
@@ -38,7 +57,8 @@
     <a href="#" id="logo"> <img src="./images/q.png" alt="hello" /></a> 
     <!-- navigation menu -->
     <ul id="navigation">
-      <li><a href="#home" class="active">Home</a></li>
+      <li><a href="#home" class="active">Home</a></li>	
+      <li><a href="#map">Map</a></li>
       <li><a href="#gallery">Gallery</a></li>
       <li><a href="#purification">Purification</a></li>
       <li><a href="#harvest">Harvest</a></li>
@@ -76,13 +96,19 @@
         <div class="clear"> </div>
 
 <!-----SEARCH------->
-    <br><form class="form-search" style="width: 260px; margin: 0 auto;" action="state.php" method="POST"> 
-	<select name="region" >
-	<option value="STATE">STATE</option>
-	<option value="DISTRICT">DISTRICT</option>
-	</select>
-	<button type="submit" style="width: 220px; margin: 0 auto; color: darkgreen; background-color: grey; border: 2pt ridge grey;" class="btn" >Search State</button> 
-</form>
+   <!-- <br><form class="form-search" style="width: 260px; margin: 0 auto;" action="state.php" method="POST"> 
+	<button type="submit" style="width: 220px; margin: 0 auto; color: darkgreen; background-color: grey; border: 2pt ridge grey;" class="btn" name="search" value="1" >Search</button> 
+	</form>-->
+	<div id="page_content" >
+	<form autocomplete="off" style="width: 260px; margin: 0 auto;" action="c1.php" method="POST" >
+		<div class="span6">
+                <strong>Enter State/District Name</strong><br>
+			
+		<input type="text" name="st" id="st" style="width: 220px; color: darkgreen" />
+		
+		<input type="submit" style="width: 220px;" value="Submit" class=" btn btn-inverse "/></div>
+	</form>
+	</div>
         <!-- services -->
         <div class="one_half first">
           <div class="column_content">
@@ -139,8 +165,20 @@
         <div class="clear"> </div>
       </div>
     </div>
-    <div class="page" id="gallery"> 
-      <!-- page facts -->
+ <div class="page" id="map">
+   <!-- page MAP -->
+	<h3 class="page_title"> MAP </h3>
+      	<div class="page_content">
+
+
+
+        </div>
+</div>
+
+
+
+ <div class="page" id="gallery"> 
+      <!-- page Gallery -->
 	  <h3 class="page_title"> Gallery </h3>
       <div class="page_content">
         <p><strong> Water </strong> is an essential resource for life and good health. A lack of water to meet daily needs is a reality today for one in three people around the world. 
@@ -207,7 +245,7 @@
       <!-- page sources -->
 	  <h3 class="page_title"> Our Sources </h3>
       <div class="page_content">
-        <p> We have got great help from the following sources of data .</p>
+        <p>We have drawn data from a wide range of sources. These include public sources like the Data Portal India ,NRDWP, Unicef, as well as departments and agencies of the Government of India. While in most cases all the visualization and analyses you will see here are built from  data given at data.gov.in. </p>
         <div class="space"> </div>
         <div class="clear"> </div>
         <ul id="clients" class="grid">
@@ -254,13 +292,13 @@
           <div id="msgs"> </div>
           <form id="cform" name="cform" method="post" action="">
             <input type="text" id="name" name="name" value="Full Name*" onfocus="if(this.value == 'Full Name*') this.value = ''"
-                            onblur="if(this.value == '') this.value = 'Full Name*'" />
+                            onblur="if(this.value == '') this.value = 'Full Name*'" required='true' />
             <input type="text" id="email" name="email" value="Email Address*" onfocus="if(this.value == 'Email Address*') this.value = ''"
-                            onblur="if(this.value == '') this.value = 'Email Address*'" />
+                            onblur="if(this.value == '') this.value = 'Email Address*'" required='true' />
             <input type="text" id="subject" name="subject" value="Subject*" onfocus="if(this.value == 'Subject*') this.value = ''"
-                            onblur="if(this.value == '') this.value = 'Subject*'" />
+                            onblur="if(this.value == '') this.value = 'Subject*'" required='true' />
             <textarea id="msg" name="msg" onfocus="if(this.value == 'Your Message*') this.value = ''"
-                            onblur="if(this.value == '') this.value = 'Your Message*'">Your Message*</textarea>
+                            onblur="if(this.value == '') this.value = 'Your Message*'" required='true'>Your Message*</textarea>
             <button id="submit" class="button"> Send Message</button>
           </form>
         </fieldset>
@@ -268,13 +306,13 @@
         <ul class="social_icons">
           <li><a href="https://twitter.com/Private_S90" target="_blank" id="Private_S90" original-title="Follow Me on Twitter"> <img src="images/twitter.png" alt="Twitter" /></a></li>
           <li><a href="https://plus.google.com/u/0/105477585963841084894/profile/p/pub" target="_blank" id="siddharth.gautam@iic.ac.in" original-title="Find me on Google+"> <img src="images/g+.png" alt="Google+" /></a></li>
-          <li><a href="https://www.facebook.com/siddharth.gautam.79" target="_blank" id="sid_coolgautam@yahoo.co.in" original-title="Join My Fan Club"> <img src="images/facebook.png" alt="Facebook" /></a></li>
+          <li><a href="https://www.facebook.com/vineeta.nikki" target="_blank" id="vineeta.nikki@gmail.com" original-title="Join My Fan Club"> <img src="images/facebook.png" alt="Facebook" /></a></li>
         </ul>
       </div>
     </div>
     <div class="footer">
       <p> &copy; 2013, Some Rights Reserved.</p>
-      <p> Designed by Siddharth/Vineeta</p>
+      <p> Designed by Siddharth Gautam/Vineeta Mehta</p>
     </div>
   </div>
 </div>

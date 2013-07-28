@@ -2,7 +2,7 @@
 
 // EDIT THE FOLLOWING LINE BELOW AS REQUIRED
 
-$send_email_to = "admin@egrappler.com";
+$send_email_to = "vineetamehta91@gmail.com,vineeta.mehta@iic.ac.in";
 
 function send_email($name,$email,$email_subject,$email_message)
 {
